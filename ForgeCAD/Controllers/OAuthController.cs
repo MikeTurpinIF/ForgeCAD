@@ -37,7 +37,7 @@ namespace ForgeCAD.Controllers
         {
             if (InternalToken == null || InternalToken.ExpiresAt < DateTime.UtcNow)
             {
-                InternalToken = await Get2LeggedTokenAsync(new Scope[] { Scope.BucketCreate, Scope.BucketRead, Scope.BucketDelete, Scope.DataWrite, Scope.DataRead, Scope.DataCreate });
+                InternalToken = await Get2LeggedTokenAsync(new Scope[] { Scope.BucketCreate, Scope.BucketRead, Scope.BucketDelete, Scope.DataWrite, Scope.DataRead, Scope.DataCreate, Scope.CodeAll });
                 InternalToken.ExpiresAt = DateTime.UtcNow.AddSeconds(InternalToken.expires_in);
             }
 
