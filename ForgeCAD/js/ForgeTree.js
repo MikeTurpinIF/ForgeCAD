@@ -136,6 +136,14 @@ function autodeskCustomMenu(autodeskNode) {
                         downloadObject(treeNode);
                     },
                     icon: 'glyphicon glyphicon-bitcoin',
+                },
+                excelFile: {
+                    label: "Excel",
+                    action: function () {
+                        var treeNode = $('#appBuckets').jstree(true).get_selected(true)[0];
+                        excelObject(treeNode);
+                    },
+                    icon: 'glyphicon glyphicon-tag',
                 }
             };
             break;
@@ -212,6 +220,21 @@ function downloadObject(node) {
         data: JSON.stringify({ 'bucketKey': bucketKey, 'objectName': objectName }),
         success: function (res) {
             $("#forgeViewer").html('File Downloaded to "Downloads" folder');
+        }
+    });
+}
+
+function excelObject(node) {
+    $("#forgeViewer").empty();
+    if (node == null) node = $('#appBuckets').jstree(true).get_selected(true)[0];
+    var bucketKey = node.parents[0];
+    var objectName = node.text;
+    jQuery.post({
+        url: 'api/forge/object/excel',
+        contentType: 'application/json',
+        data: JSON.stringify({ 'bucketKey': bucketKey, 'objectName': objectName }),
+        success: function (res) {
+            $("#forgeViewer").html('Excel file Downloaded to "Downloads" folder');
         }
     });
 }
