@@ -15,7 +15,7 @@
 
 function createNewBucket() {
     var bucketKey = $('#newBucketKey').val();
-    var policyKey = "persistent" //$('#newBucketPolicyKey').val();
+    var policyKey = 'persistent'; //$('#newBucketPolicyKey').val();
     jQuery.post({
         url: '/api/forge/oss/buckets',
         contentType: 'application/json',
